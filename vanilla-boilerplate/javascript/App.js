@@ -11,7 +11,7 @@ class App {
 		this.backgroundColor = "rgb(255,255,255)";
 		this.ctx = this.canvas.getContext("2d");
 		this.firstInput = true;
-		this.scale = 50;
+		this.scale = this.w / 10;
 		this.lerpedScale = this.scale;
 		this.setup();
 	}
@@ -35,7 +35,7 @@ class App {
 	draw() {
 		this.lerpedScale = lerp(
 			this.lerpedScale,
-			this.val.isPressed ? this.scale : this.scale - 40,
+			this.val.isPressed ? this.scale : this.scale - this.w / 20,
 			0.05
 		);
 		this.lerpedVal.x = lerp(this.lerpedVal.x, this.mappedVal.x, 0.05);
