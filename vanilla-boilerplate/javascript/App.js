@@ -56,7 +56,7 @@ class App {
 		requestAnimationFrame(this.draw.bind(this));
 	}
 
-	/*do not touch*/
+	/*DO NOT TOUCH*/
 	canvasSetup() {
 		this.canvas.width = (window.innerHeight / 1.77) * this.pixelDensity;
 		this.canvas.height = window.innerHeight * this.pixelDensity;
@@ -66,7 +66,6 @@ class App {
 		this.canvas.style.width = this.w / this.pixelDensity + "px";
 		this.canvas.style.height = this.h / this.pixelDensity + "px";
 	}
-
 	setupFirebase() {
 		const params = new URLSearchParams(window.location.search);
 		const db = getDatabase(fireBaseApp);
@@ -87,7 +86,6 @@ class App {
 			this.onValueChange();
 		});
 	}
-
 	initValues(e) {
 		console.log("init");
 		this.mappedVal = e;
