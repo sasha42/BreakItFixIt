@@ -22,6 +22,8 @@ class App {
 		this.ctx.fillRect(0, 0, this.w, this.h);
 		window.onresize = () => {
 			this.canvasSetup();
+			this.ctx.fillStyle = "white";
+			this.ctx.fillRect(0, 0, this.w, this.h);
 		};
 		this.loadFirstInput();
 	}
@@ -38,6 +40,11 @@ class App {
 			this.val.isPressed ? this.scale : this.scale - this.w / 20,
 			0.05
 		);
+
+		//this.val.isPressed
+		//this.val
+		//this.mappedValue
+		//this.lerpedValue
 		this.lerpedVal.x = lerp(this.lerpedVal.x, this.mappedVal.x, 0.05);
 		this.lerpedVal.y = lerp(this.lerpedVal.y, this.mappedVal.y, 0.05);
 		// this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
