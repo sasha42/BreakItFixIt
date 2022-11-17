@@ -1,9 +1,10 @@
 const config = {
-	server: {
-		watch: {
-			usePolling: true,
-		},
-	},
+  server: {
+    port: 8000,
+    watch: {
+      usePolling: true,
+    },
+  },
 };
 
 export default config;
