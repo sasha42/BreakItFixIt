@@ -5,13 +5,13 @@ import { lerp, mapValueOnCanvasSize } from "./utils";
 
 const shuffleMode = false;
 
-class App {
+class firebaseApp {
   constructor() {
-    this.canvas = createCanvas();
-    this.pixelDensity = window.devicePixelRatio;
-    this.canvasSetup();
-    this.backgroundColor = "rgb(255,255,255)";
-    this.ctx = this.canvas.getContext("2d");
+    // this.canvas = createCanvas();
+    // this.pixelDensity = window.devicePixelRatio;
+    // this.canvasSetup();
+    // this.backgroundColor = "rgb(255,255,255)";
+    // this.ctx = this.canvas.getContext("2d");
     this.firstInput = true;
     this.scale = this.w / 10;
     this.lerpedScale = this.scale;
@@ -23,20 +23,20 @@ class App {
 
   setup() {
     this.setupFirebase();
-    this.ctx.fillStyle = "white";
-    this.ctx.fillRect(0, 0, this.w, this.h);
-    window.onresize = () => {
-      this.canvasSetup();
-      this.ctx.fillStyle = "white";
-      this.ctx.fillRect(0, 0, this.w, this.h);
-    };
+    // this.ctx.fillStyle = "white";
+    // this.ctx.fillRect(0, 0, this.w, this.h);
+    // window.onresize = () => {
+    //   this.canvasSetup();
+    //   this.ctx.fillStyle = "white";
+    //   this.ctx.fillRect(0, 0, this.w, this.h);
+    // };
     this.loadFirstInput();
   }
   // On Value change in the Firebase interface
   onValueChange() {
-    this.val.isPressed
-      ? (this.backgroundColor = "green")
-      : (this.backgroundColor = "red");
+    // this.val.isPressed
+    //   ? (this.backgroundColor = "green")
+    //   : (this.backgroundColor = "red");
   }
 
   draw() {
@@ -50,21 +50,31 @@ class App {
     //this.val
     //this.mappedValue
     //this.lerpedValue
+
+    // Inject mapped values based on window size
+    this.mappedVal.x = mapValueOnCanvasSize(this.val.x, window.innerWidth); // to remap value on canvas size
+    this.mappedVal.y = mapValueOnCanvasSize(this.val.y, window.innerHeight);
+
     this.lerpedVal.x = lerp(this.lerpedVal.x, this.mappedVal.x, 0.05);
     this.lerpedVal.y = lerp(this.lerpedVal.y, this.mappedVal.y, 0.05);
+    // window.lerpedVal = this.lerpedVal;
+
+    // Send mapped values to window
+    window.firebaseData = {'pressed': this.val.isPressed, 'lerpedVal': this.lerpedVal};
+
     // this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-    this.ctx.fillStyle = "rgb(0,0,0)";
-    this.ctx.beginPath();
-    this.ctx.arc(
-      this.lerpedVal.x,
-      this.lerpedVal.y,
-      this.lerpedScale,
-      0,
-      2 * Math.PI
-    );
-    this.ctx.fill();
-    this.ctx.closePath();
+    // this.ctx.fillStyle = "rgb(0,0,0)";
+    // this.ctx.beginPath();
+    // this.ctx.arc(
+    //   this.lerpedVal.x,
+    //   this.lerpedVal.y,
+    //   this.lerpedScale,
+    //   0,
+    //   2 * Math.PI
+    // );
+    // this.ctx.fill();
+    // this.ctx.closePath();
     requestAnimationFrame(this.draw.bind(this));
   }
 
@@ -130,4 +140,4 @@ class App {
   }
 }
 
-export default App;
+export default firebaseApp;

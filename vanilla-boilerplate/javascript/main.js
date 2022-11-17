@@ -1,6 +1,6 @@
-import App from "./App";
+import firebaseApp from "./firebaseApp";
 import "./../style.css";
 
 window.onload = () => {
-	new App();
+	new firebaseApp();
 };
