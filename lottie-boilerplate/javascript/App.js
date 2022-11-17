@@ -11,22 +11,20 @@ class App {
 		this.scale = this.w / 10;
 		this.lerpedScale = this.scale;
 		this.animationArray = [];
-		this.numberOfAnimations = 20;
+		this.numberOfAnimations = 1;
 		this.scaleArray = [];
 		this.setup();
 	}
 
 	setup() {
-		for (let i = 0; i < this.numberOfAnimations; i++) {
-			this.animationArray.push(
-				lottie.loadAnimation({
-					container: this.animContainer,
-					renderer: "svg",
-					loop: true,
-					path: "./json/typography.json",
-				})
-			);
-		}
+		this.animationArray.push(
+			lottie.loadAnimation({
+				container: this.animContainer,
+				renderer: "svg",
+				loop: true,
+				path: "./json/typography.json",
+			})
+		);
 
 		for (let i = 0; i < this.animationArray.length; i++) {
 			this.animationArray[i].renderer.svgElement.style.transform = "scale(2)";
@@ -38,20 +36,16 @@ class App {
 	}
 	// On Value change in the Firebase interface
 	onValueChange() {
-		if (!this.val.isPressed) {
-			for (let i = 0; i < this.numberOfAnimations; i++) {
-				this.animationArray[i].pause();
-			}
+		if (this.val.isPressed == true) {
+			this.animationArray[0].renderer.svgElement.style.transform = "scale(5)";
 		} else {
-			for (let i = 0; i < this.numberOfAnimations; i++) {
-				this.animationArray[i].play();
-			}
+			this.animationArray[0].renderer.svgElement.style.transform = "scale(1)";
 		}
 	}
 
 	draw() {
 		// console.log(this.angle);
-		const speed = map(this.val.x, 0, 1, -1, 1);
+		const speed = map(this.val.x, 0, 1, -10, 10);
 		for (let i = 0; i < this.numberOfAnimations; i++) {
 			this.animationArray[i].setSpeed(speed);
 		}

@@ -19,5 +19,5 @@ background: #cfcfcf;
   overflow: hidden;
   background-color: white;
 
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr;
 }
