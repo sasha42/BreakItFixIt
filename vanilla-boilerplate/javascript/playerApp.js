@@ -32,12 +32,14 @@ class playerApp {
         this.loadedNum = 0;
     }
 
+
     initPIXI() {
         const PX = new PIXI.Application({
             width: window.innerWidth,
             height: window.innerHeight,
             transparent: false,
             antialias: true,
+            resizeTo: window, 
         });
 
         // --> Ajouter le canvas WEBGL dans notre page HTML
@@ -81,6 +83,7 @@ class playerApp {
         PX.stage.addChild(container);
         //this.loadImage(0);
         this.loadImages();
+
     }
 
     async loadImages() {
