@@ -2,7 +2,11 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
+		<link rel="icon" type="image/svg+xml" href="/vite.svg" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+		<meta name = "theme-color" content = "#000000">
 		<title>Break it WORKSHOP</title>
 		<style>
 			body {
@@ -11,9 +15,17 @@
 				margin: 0px;
 				padding: 0px;
 				background: #000;
+				position: fixed;
+				overflow-x: hidden;
+				overflow-y: hidden;
+				touch-action: manipulation;
+				display: flex;
+				justify-content: center;
+				align-items: center;
 			}
 			canvas {
 				width: 100%;
+				height: 100%;
 				object-fit: contain;
 			}
 			div {
@@ -21,10 +33,6 @@
 				src: url(Thermal-Regular.otf);
 			}
 			
-			button {
-				z-index: 99999;
-			}
-
 			@font-face {
 				font-family: Thermal;
 				src: url("/assets/Thermal-Regular.7c13d33f.otf") format("opentype"),
@@ -97,7 +105,7 @@
 				justify-content: center;
 				min-height: 100vh;
 				min-height: calc(var(--vh, 1vh) * 100);
-				margin-top: -0.3vw;
+				margin-top: -5.3vw;
 				overflow: hidden;
 				font-family: Thermal;
 				font-size: 9.688vw;
@@ -106,8 +114,8 @@
 			}
 			@media all and (max-width: 767px) {
 				.loading-container {
-				font-size: 20px;
-				font-size: 1.25rem;
+				font-size: 40px;
+				font-size: 3.25rem;
 				line-height: 18px;
 				line-height: 1.125rem;
 				}
@@ -130,7 +138,8 @@
 				/* display: none; */
 				/* top: 50%;
 				left: 50%; */
-				margin-top: 20em;
+				z-index: 99999;
+				margin-top: 8em;
 				width: 10em;
 				height: 5em;
 				z-index: 999;
@@ -143,6 +152,30 @@
 				/* cursor: pointer;
 				pointer-events: none; */
 				color: black;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				/* font-size: 40px;
+				font-size: 3.25rem;
+				line-height: 18px;
+				line-height: 1.125rem; */
+			}
+
+			@media all and (max-width: 767px) {
+				.button{
+					margin-top: 13em;
+				/* font-size: 40px;
+				font-size: 3.25rem;
+				line-height: 18px;
+				line-height: 1.125rem; */
+				}
+			}
+
+			.startText {
+				font-size: 20px;
+				font-size: 2.2rem;
+				line-height: 18px;
+				line-height: 1.125rem;
 			}
 
 			.buttonLoaded {
@@ -151,14 +184,18 @@
 			}
 		</style>
 		<script src="./assets/pixi.min.js"></script>
-		<script type="module" crossorigin src="/assets/index.adafe90f.js"></script>
+		<script type="module" crossorigin src="/assets/index.0e8c3b16.js"></script>
 		<link rel="stylesheet" href="/assets/index.ca848970.css">
 	</head>
 	<body>
 		<div id="app"></div>
 		<div class="loading" id="loading"><div class="loading-container"><span><span class="loading-container_h" id="loadingNumber">00</span>:<span class="loading-container_m">00</span>:<span class="loading-container_s">00</span></span></div><div class="loading-bg"></div></div>
     <div class="buttonContainer">
-        <div class="button" id="playButton">START</div>
+        <div class="button" id="playButton">
+			<p class="startText">
+				START
+			</p>
+		</div>
     </div>
 	<script>
         function removeLoading() {
