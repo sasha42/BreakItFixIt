@@ -285,7 +285,7 @@ class playerApp {
 
                 // if distance is less than 100, move particle
                 if (distance < 400) {
-                    particle.scale.set(0.0004*(400-distance));
+                    particle.scale.set(0.00045*(400-distance));
                 }
 
 
