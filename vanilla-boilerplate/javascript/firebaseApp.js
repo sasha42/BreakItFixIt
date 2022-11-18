@@ -15,6 +15,9 @@ class firebaseApp {
     this.firstInput = true;
     this.scale = this.w / 10;
     this.lerpedScale = this.scale;
+    this.val = { x: 0, y: 0, isPressed: false };
+    this.mappedVal = { x: 0, y: 0 };
+    this.lerpedVal = { x: 0, y: 0 };
     this.setup();
     this.port = parseInt(
       location.host.substr(location.host.indexOf(":")).replaceAll(":", "")
@@ -40,11 +43,11 @@ class firebaseApp {
   }
 
   draw() {
-    this.lerpedScale = lerp(
-      this.lerpedScale,
-      this.val.isPressed ? this.scale : this.scale - this.w / 20,
-      0.05
-    );
+    // this.lerpedScale = lerp(
+    //   this.lerpedScale,
+    //   this.val.isPressed ? this.scale : this.scale - this.w / 20,
+    //   0.05
+    // );
 
     //this.val.isPressed
     //this.val
@@ -52,6 +55,7 @@ class firebaseApp {
     //this.lerpedValue
 
     // Inject mapped values based on window size
+    // this.mappedVal = { x: 0, y: 0 };
     this.mappedVal.x = mapValueOnCanvasSize(this.val.x, window.innerWidth); // to remap value on canvas size
     this.mappedVal.y = mapValueOnCanvasSize(this.val.y, window.innerHeight);
 
@@ -91,7 +95,8 @@ class firebaseApp {
   setupFirebase() {
     const params = new URLSearchParams(window.location.search);
     const db = getDatabase(fireBaseApp);
-    const id = params.get("id");
+    // const id = params.get("id");
+    const id = '16';
     const dbName = params.get("pres") ? "poster0" : "poster" + id;
     const dbVal = ref(db, dbName);
     onValue(dbVal, (e) => {
