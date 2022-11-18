@@ -11,12 +11,12 @@ class playerApp {
      * 4. utlisier les info du raster pour animer des particules
      */
     constructor() {
-        this.folder = "./assets/thursday-morning-2/";
+        this.folder = "./assets/vertical-2/";
         this.imageName = "ezgif-frame-000";
         // this.imageName = "MAIN";
-        this.max = 56;
+        this.max = 23;
         this.allImages = [];
-        this.dimensions = { width: 1300, height: 600 };
+        this.dimensions = { width: 390, height: 600 };
         this.counter = 0;
 
         const canvas = document.createElement("canvas");
@@ -28,6 +28,8 @@ class playerApp {
         this.initPIXI();
 
         window.firebaseData = {"lerpedVal": ""}
+
+        this.loadedNum = 0;
     }
 
     initPIXI() {
@@ -136,7 +138,8 @@ class playerApp {
         // Once image is loaded, push it to array
         image.onload = () => {
             // Increase counter
-            document.getElementById("loadingNumber").innerHTML = parseInt(url.number*1.8);
+            this.loadedNum += 1.8
+            document.getElementById("loadingNumber").innerHTML = String(parseInt(this.loadedNum)).padStart(2, '0');;
 
             // Add image to specific number
             this.allImages[parseInt(url.number)] = image;
