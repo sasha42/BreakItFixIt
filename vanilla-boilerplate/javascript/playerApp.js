@@ -138,7 +138,7 @@ class playerApp {
         // Once image is loaded, push it to array
         image.onload = () => {
             // Increase counter
-            this.loadedNum += this.max / 100;
+            this.loadedNum += (this.max / 100);
             document.getElementById("loadingNumber").innerHTML = String(parseInt(this.loadedNum)).padStart(2, '0');;
 
             // Add image to specific number
@@ -285,7 +285,7 @@ class playerApp {
 
                 // if distance is less than 100, move particle
                 if (distance < 400) {
-                    particle.scale.set(0.0005*(400-distance));
+                    particle.scale.set(0.0004*(400-distance));
                 }
 
 
