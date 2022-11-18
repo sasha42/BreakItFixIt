@@ -11,12 +11,12 @@ class playerApp {
      * 4. utlisier les info du raster pour animer des particules
      */
     constructor() {
-        this.folder = "./assets/vertical-hq/";
+        this.folder = "./assets/vertical-smaller/";
         this.imageName = "ezgif-frame-000";
         // this.imageName = "MAIN";
         this.max = 39;
         this.allImages = [];
-        this.dimensions = { width: 780, height: 1200 };
+        this.dimensions = { width: 520, height: 800 };
         this.counter = 0;
 
         const canvas = document.createElement("canvas");
