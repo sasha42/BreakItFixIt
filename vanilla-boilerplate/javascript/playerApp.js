@@ -16,12 +16,21 @@ class playerApp {
         // this.imageName = "MAIN";
         this.max = 39;
         this.allImages = [];
-        this.dimensions = { width: 520, height: 800 };
+
+        // Calculate dimensions based on ratio and screen size
+        this.dimensions = this.calculateDimensions();
+        // this.multiplier = 0.7 
+        // this.dimensions = {};
+        // this.dimensions.width = (window.innerHeight-100 * 0.65)*this.multiplier;
+        // this.dimensions.height = (window.innerHeight-100)*this.multiplier;
+        // this.dimensions = { width: window.innerHeight-100 * 0.65, height: window.innerHeight*this.multiplier };
         this.counter = 0;
 
         const canvas = document.createElement("canvas");
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+        // canvas.width = window.innerWidth;
+        // canvas.height = window.innerHeight;
+        canvas.width = this.dimensions.width;
+        canvas.height = this.dimensions.height;
         //document.body.appendChild(canvas);
         this.ctx = canvas.getContext("2d");
 
@@ -32,6 +41,23 @@ class playerApp {
         this.loadedNum = 0;
     }
 
+
+    calculateDimensions() {
+        /* Calculate dimensions based on ratio and screen size */
+
+        // Define vars
+        let dimensions = {};
+        let ratio = 0.65;
+
+        // Calculate dimensions
+        // dimensions.width = window.innerHeight * ratio;
+        // dimensions.height = window.innerHeight;
+        dimensions.height = 800;
+        dimensions.width = 520;
+
+        // Return dimensions
+        return dimensions;
+    }
 
     initPIXI() {
         const PX = new PIXI.Application({
@@ -141,7 +167,7 @@ class playerApp {
         // Once image is loaded, push it to array
         image.onload = () => {
             // Increase counter
-            this.loadedNum += (this.max / 100);
+            this.loadedNum += (100/this.max);
             document.getElementById("loadingNumber").innerHTML = String(parseInt(this.loadedNum)).padStart(2, '0');;
 
             // Add image to specific number
@@ -282,8 +308,10 @@ class playerApp {
                 particle.scale.set(0.0001);
 
                 // calc distance to mouse
-                const distanceX = particle.position.x - window.firebaseData.lerpedVal.x;
-                const distanceY = particle.position.y - window.firebaseData.lerpedVal.y;
+                // const distanceX = particle.position.x - window.firebaseData.lerpedVal.x;
+                // const distanceY = particle.position.y - window.firebaseData.lerpedVal.y;
+                const distanceX = particle.position.x - window.positionX;
+                const distanceY = particle.position.y - window.positionY;
                 const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
 
                 // if distance is less than 100, move particle
